@@ -8,7 +8,7 @@
 git clone --depth=1 https://github.com/leodube/bruins-developer-homework.git <PROJECT_NAME>
 cd <PROJECT_NAME>
 rm -rf .git .gitignore
-pip install -r /backend
+pip install -r backend/requirements.txt
 cd frontend
 npm install
 ```
