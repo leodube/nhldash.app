@@ -43,6 +43,14 @@ def teamstats(team_id):
     res = get_team_stats(team_id, params=request.args)
     return jsonify(res)
 
+# added
+@app.route("/team/<team_id>/roster")
+def teamroster(team_id):
+    '''Return NHL team roster
+    See https://gitlab.com/dword4/nhlapi/-/blob/master/stats-api.md#teams for more info'''
+    res = get_team_roster(team_id, params=request.args)
+    return jsonify(res)
+
 @app.route("/schedule")
 def schedule():
     '''Returns NHL schedule.  Defaults to today's games

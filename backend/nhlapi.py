@@ -35,6 +35,11 @@ def get_team_stats(team_id, params={}):
     response = nhl_request(f'teams/{team_id}/stats', params=params)
     return response['stats']
 
+# added
+def get_team_roster(team_id, params={}):
+    response = nhl_request(f'teams/{team_id}?expand=team.roster', params=params)
+    return response['teams'][0]['roster']['roster']
+
 def get_schedule(params={}):
     response = nhl_request('schedule', params=params)
     return response
