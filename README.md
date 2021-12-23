@@ -12,6 +12,7 @@ pip install -r backend/requirements.txt
 cd frontend
 npm install
 ```
+**Note:** Requires Node and npm
 
 ### Start Backend
 ```
