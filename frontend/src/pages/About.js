@@ -107,7 +107,9 @@ const About = () => {
           If the project were to be scaled I would...
         </Typography>
         <ul>
-          <li>Extended backend to get players by team roster.</li>
+          <li>Implement Typescript.</li>
+		  <li>Use Jest, React-Testing-Library, and Storybook for testing.</li>
+		  <li>Use a more advanced state management library like Redux.</li>
         </ul>
       </Box>
     </React.Fragment>
