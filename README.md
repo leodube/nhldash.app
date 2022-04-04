@@ -1,5 +1,8 @@
 # Bruins Developer Assignment
 
+## Introduction
+This was a coding challenge as part of the interview process for a developper position at the Boston Bruins. The task was to design a "player card" for evaluating NHL players in 10 hours. The specifics of the design left entirely up to the interviewee.
+
 ## Instructions
 
 ### Copy Project Files and Install
