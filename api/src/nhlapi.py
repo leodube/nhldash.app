@@ -38,8 +38,6 @@ def get_team_stats(team_id, params={}):
     response = nhl_request(f'teams/{team_id}/stats', params=params)
     return response['stats']
 
-# added
-
 
 def get_team_roster(team_id, params={}):
     response = nhl_request(
