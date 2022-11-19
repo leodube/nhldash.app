@@ -14,15 +14,15 @@ const Roster = (props) => {
   const [roster, setRoster] = useState();
 
   useEffect(() => {
+    const getRoster = async () => {
+      let res = await teamService.getRoster(team.id);
+      setRoster(res);
+    };
+
     if (team) {
       getRoster();
     }
-  }, [team, getRoster]);
-
-  const getRoster = async () => {
-    let res = await teamService.getRoster(team.id);
-    setRoster(res);
-  };
+  }, [team]);
 
   return (
     <Grid container spacing={2}>
