@@ -17,7 +17,7 @@ const Roster = (props) => {
     if (team) {
       getRoster();
     }
-  }, [team, getRoster]);
+  }, [team]);
 
   const getRoster = async () => {
     let res = await teamService.getRoster(team.id);
