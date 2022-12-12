@@ -1,6 +1,7 @@
 import React from "react";
 
 // MUI Imports
+import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
@@ -10,22 +11,17 @@ import Toolbar from "@mui/material/Toolbar";
 
 const TeamsList = (props) => {
   // Destructure props
-  const { teams, drawerWidth, handleTeamsListItemClick, selectedTeamIndex } =
-    props;
+  const {
+    teams,
+    drawerWidth,
+    open,
+    toggleOpen,
+    handleTeamsListItemClick,
+    selectedTeamIndex,
+  } = props;
 
-  return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: drawerWidth,
-          boxSizing: "border-box",
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
+  const drawer = (
+    <>
       <Toolbar />
       <Divider />
       <List>
@@ -40,7 +36,40 @@ const TeamsList = (props) => {
             </ListItemButton>
           ))}
       </List>
-    </Drawer>
+    </>
+  );
+
+  return (
+    <Box
+      component="nav"
+      sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+    >
+      <Drawer
+        variant="temporary"
+        open={open}
+        onClose={toggleOpen}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+        }}
+        anchor="left"
+      >
+        {drawer}
+      </Drawer>
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: "none", sm: "block" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+        }}
+        open
+      >
+        {drawer}
+      </Drawer>
+    </Box>
   );
 };
 
