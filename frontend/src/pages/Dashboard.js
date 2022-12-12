@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { teamsService, playerService } from "../services";
+import { playerService } from "../services";
 import { TeamAppBar, TeamsList, Roster, PlayerCard } from "../components";
+import { useTeams, usePlayer } from "../hooks";
 
 // MUI imports
 import Box from "@mui/material/Box";
@@ -15,39 +16,18 @@ const Dashboard = () => {
   let navigate = useNavigate();
 
   // State variables
-  const [teams, setTeams] = useState();
+  const teams = useTeams();
+  const [selectedPlayer, setSelectedPlayer] = usePlayer();
   const [selectedTeamIndex, setSelectedTeamIndex] = useState(0);
-  const [selectedPlayer, setSelectedPlayer] = useState();
   const [openPlayerModal, setOpenPlayerModal] = useState(false);
-
-  useEffect(() => {
-    if (!teams) {
-      getTeams();
-    }
-  });
-
-  const getTeams = async () => {
-    let resTeam = await teamsService.getTeams();
-    setTeams(
-      // sort teams by name
-      resTeam.sort((firstEl, secondEl) => {
-        return firstEl.name.localeCompare(secondEl.name);
-      })
-    );
-  };
-
-  const getPlayer = async (id) => {
-    let resPlayerInfo = await playerService.getPlayer(id);
-    let resPlayerStats = await playerService.getPlayerStats(id);
-    setSelectedPlayer({ info: resPlayerInfo, stats: resPlayerStats });
-  };
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleTeamsListItemClick = (event, index) => {
     setSelectedTeamIndex(index);
   };
 
   const handlePlayerModalOpen = (event, id) => {
-    getPlayer(id);
+    setSelectedPlayer(id);
     setOpenPlayerModal(true);
   };
 
@@ -56,15 +36,23 @@ const Dashboard = () => {
     setSelectedPlayer();
   };
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   return (
     <React.Fragment>
       <TeamAppBar
         team={teams && teams[selectedTeamIndex]}
         drawerWidth={drawerWidth}
+        open={mobileOpen}
+        toggleOpen={handleDrawerToggle}
       />
       <TeamsList
         teams={teams}
         drawerWidth={drawerWidth}
+        open={mobileOpen}
+        toggleOpen={handleDrawerToggle}
         handleTeamsListItemClick={handleTeamsListItemClick}
         selectedTeamIndex={selectedTeamIndex}
       />

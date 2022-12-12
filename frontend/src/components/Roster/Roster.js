@@ -26,7 +26,7 @@ const Roster = (props) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
           Forwards
         </Typography>
@@ -37,7 +37,7 @@ const Roster = (props) => {
           openPlayerModal={openPlayerModal}
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
           Defensemen
         </Typography>
