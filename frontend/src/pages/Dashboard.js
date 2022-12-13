@@ -24,6 +24,7 @@ const Dashboard = () => {
 
   const handleTeamsListItemClick = (event, index) => {
     setSelectedTeamIndex(index);
+    setMobileOpen(false);
   };
 
   const handlePlayerModalOpen = (event, id) => {
