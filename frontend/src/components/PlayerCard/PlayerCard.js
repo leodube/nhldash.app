@@ -49,7 +49,7 @@ const PlayerCard = (props) => {
         <Stack direction="row" spacing={2}>
           <Avatar
             alt={player.info.fullName}
-            src={`http://nhl.bamcontent.com/images/headshots/current/60x60/${player.info.id}.jpg`}
+            src={`https://cms.nhl.bamgrid.com/images/headshots/current/60x60/${player.info.id}.jpg`}
           />
           <Typography variant="h6" component="div">
             {player.info.fullName}

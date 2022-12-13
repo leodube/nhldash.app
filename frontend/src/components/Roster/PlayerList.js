@@ -29,7 +29,7 @@ const PlayerList = (props) => {
               <ListItemAvatar>
                 <Avatar
                   alt={player.person.fullName}
-                  src={`http://nhl.bamcontent.com/images/headshots/current/60x60/${player.person.id}.jpg`}
+                  src={`https://cms.nhl.bamgrid.com/images/headshots/current/60x60/${player.person.id}.jpg`}
                 />
               </ListItemAvatar>
               <ListItemText
