@@ -4052,14 +4052,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "axios@npm:1.2.1"
+"axios@npm:^1.2.5":
+  version: 1.2.5
+  resolution: "axios@npm:1.2.5"
   dependencies:
     follow-redirects: ^1.15.0
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
-  checksum: c4dc4e119064c9aed09a3de309bedb797a139a6fb372223aafe3e0c10a7d4a14e4d3e9c9d309467fadb9d2b490b891ee3df96ef5b55716bb971910466ff9f0c5
+  checksum: 3d7a3b029b9f46fb296bcecf84fbe4be32b09511aba2256d44fc5c1a75824f364d2ce22fd0ea61adfd564e1c353c6d2000b4cc340c65b27102528101557dd9db
   languageName: node
   linkType: hard
 
@@ -6640,7 +6640,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.16.1
     "@testing-library/react": ^13.4.0
     "@testing-library/user-event": ^14.4.3
-    axios: ^1.2.1
+    axios: ^1.2.5
     react: ^18.2.0
     react-dom: ^18.2.0
     react-router-dom: ^6.4.4
