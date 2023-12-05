@@ -1,4 +1,4 @@
-# [NHL Players Dashboard](https://leodube-nhldash.netlify.app)
+# [NHL Players Dashboard](https://nhldash.com/)
 
 ## Introduction
 This was a coding challenge as part of the interview process for a developer position at the Boston Bruins. The task was to design a "player card" for evaluating NHL players in 10 hours. The specifics of the design was left entirely up to the interviewee.
