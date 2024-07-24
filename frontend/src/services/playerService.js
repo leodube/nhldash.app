@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// const url = "https://nhldash-api.vercel.app";
-const url = "http://127.0.0.1:5000"
+const url = "https://nhldash-api.vercel.app";
 
 const playerService = {
   getPlayer: async (player_id) => {
