@@ -32,7 +32,7 @@ const TeamsList = (props) => {
               selected={selectedTeamIndex === index}
               onClick={(event) => handleTeamsListItemClick(event, index)}
             >
-              <ListItemText primary={team.name} />
+              <ListItemText primary={team.teamName.default} />
             </ListItemButton>
           ))}
       </List>
