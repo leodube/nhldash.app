@@ -6,11 +6,17 @@ const useTeams = () => {
 
   useEffect(() => {
     const fetchTeams = async () => {
-      let resTeam = await teamsService.getTeams();
+      let resTeams = await teamsService.getTeams();
       setTeams(
         // sort teams by name
-        resTeam.sort((firstEl, secondEl) => {
-          return firstEl.name.localeCompare(secondEl.name);
+        resTeams
+        .filter((team) => {
+          return team.teamAbbrev.default != 'ARI'
+        })
+        .sort((firstEl, secondEl) => {
+          return firstEl.teamName.default.localeCompare(
+            secondEl.teamName.default
+          );
         })
       );
     };

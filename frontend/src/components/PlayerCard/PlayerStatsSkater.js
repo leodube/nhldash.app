@@ -18,7 +18,8 @@ const PlayerStatsSkater = (props) => {
   return (
     <Box sx={{ pt: 2, pb: 2 }}>
       <Stack direction="row" spacing={1}>
-        <Chip label={`Games Played: ${stats.games}`} />
+        <Chip label={`Season: ${stats.season}`} />
+        <Chip label={`Games Played: ${stats.gamesPlayed}`} />
       </Stack>
       <Typography sx={{ pt: 1 }} variant="h6" component="div">
         All Situations
@@ -36,8 +37,8 @@ const PlayerStatsSkater = (props) => {
             <TableCell component="th" scope="row">
               Time on Ice
             </TableCell>
-            <TableCell align="left">{stats.timeOnIce}</TableCell>
-            <TableCell align="left">{stats.timeOnIcePerGame}</TableCell>
+            <TableCell align="left">-</TableCell>
+            <TableCell align="left">{stats.avgToi}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
@@ -45,7 +46,7 @@ const PlayerStatsSkater = (props) => {
             </TableCell>
             <TableCell align="left">{stats.points}</TableCell>
             <TableCell align="left">
-              {(stats.points / stats.games).toFixed(2)}
+              {(stats.points / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -54,7 +55,7 @@ const PlayerStatsSkater = (props) => {
             </TableCell>
             <TableCell align="left">{stats.goals}</TableCell>
             <TableCell align="left">
-              {(stats.goals / stats.games).toFixed(2)}
+              {(stats.goals / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -63,7 +64,7 @@ const PlayerStatsSkater = (props) => {
             </TableCell>
             <TableCell align="left">{stats.assists}</TableCell>
             <TableCell align="left">
-              {(stats.assists / stats.games).toFixed(2)}
+              {(stats.assists / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -72,14 +73,14 @@ const PlayerStatsSkater = (props) => {
             </TableCell>
             <TableCell align="left">{stats.shots}</TableCell>
             <TableCell align="left">
-              {(stats.shots / stats.games).toFixed(2)}
+              {(stats.shots / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
               Shooting Percentage
             </TableCell>
-            <TableCell align="left">{stats.shotPct}%</TableCell>
+            <TableCell align="left">{stats.shootingPctg}%</TableCell>
             <TableCell align="left">-</TableCell>
           </TableRow>
           <TableRow>
@@ -88,25 +89,7 @@ const PlayerStatsSkater = (props) => {
             </TableCell>
             <TableCell align="left">{stats.plusMinus}</TableCell>
             <TableCell align="left">
-              {(stats.plusMinus / stats.games).toFixed(2)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Blocked Shots
-            </TableCell>
-            <TableCell align="left">{stats.blocked}</TableCell>
-            <TableCell align="left">
-              {(stats.blocked / stats.games).toFixed(2)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Hits
-            </TableCell>
-            <TableCell align="left">{stats.hits}</TableCell>
-            <TableCell align="left">
-              {(stats.hits / stats.games).toFixed(2)}
+              {(stats.plusMinus / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -115,16 +98,16 @@ const PlayerStatsSkater = (props) => {
             </TableCell>
             <TableCell align="left">{stats.pim}</TableCell>
             <TableCell align="left">
-              {(stats.pim / stats.games).toFixed(2)}
+              {(stats.pim / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
-              Shifts
+              Face-Offs
             </TableCell>
-            <TableCell align="left">{stats.shifts}</TableCell>
+            <TableCell align="left">-</TableCell>
             <TableCell align="left">
-              {(stats.shifts / stats.games).toFixed(2)}
+              {stats.faceoffWinningPctg.toFixed(2)}
             </TableCell>
           </TableRow>
         </TableBody>
@@ -143,20 +126,11 @@ const PlayerStatsSkater = (props) => {
         <TableBody>
           <TableRow>
             <TableCell component="th" scope="row">
-              Time on Ice
-            </TableCell>
-            <TableCell align="left">{stats.powerPlayTimeOnIce}</TableCell>
-            <TableCell align="left">
-              {stats.powerPlayTimeOnIcePerGame}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
               Points
             </TableCell>
             <TableCell align="left">{stats.powerPlayPoints}</TableCell>
             <TableCell align="left">
-              {(stats.powerPlayPoints / stats.games).toFixed(2)}
+              {(stats.powerPlayPoints / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -165,7 +139,7 @@ const PlayerStatsSkater = (props) => {
             </TableCell>
             <TableCell align="left">{stats.powerPlayGoals}</TableCell>
             <TableCell align="left">
-              {(stats.powerPlayGoals / stats.games).toFixed(2)}
+              {(stats.powerPlayGoals / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -178,7 +152,7 @@ const PlayerStatsSkater = (props) => {
             <TableCell align="left">
               {(
                 (stats.powerPlayPoints - stats.powerPlayGoals) /
-                stats.games
+                stats.gamesPlayed
               ).toFixed(2)}
             </TableCell>
           </TableRow>
@@ -198,29 +172,20 @@ const PlayerStatsSkater = (props) => {
         <TableBody>
           <TableRow>
             <TableCell component="th" scope="row">
-              Time on Ice
-            </TableCell>
-            <TableCell align="left">{stats.shortHandedTimeOnIce}</TableCell>
-            <TableCell align="left">
-              {stats.shortHandedTimeOnIcePerGame}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
               Points
             </TableCell>
-            <TableCell align="left">{stats.shortHandedPoints}</TableCell>
+            <TableCell align="left">{stats.shorthandedPoints}</TableCell>
             <TableCell align="left">
-              {(stats.shortHandedPoints / stats.games).toFixed(2)}
+              {(stats.shorthandedPoints / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
               Goals
             </TableCell>
-            <TableCell align="left">{stats.shortHandedGoals}</TableCell>
+            <TableCell align="left">{stats.shorthandedGoals}</TableCell>
             <TableCell align="left">
-              {(stats.shortHandedGoals / stats.games).toFixed(2)}
+              {(stats.shorthandedGoals / stats.gamesPlayed).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -228,12 +193,12 @@ const PlayerStatsSkater = (props) => {
               Assists
             </TableCell>
             <TableCell align="left">
-              {stats.shortHandedPoints - stats.shortHandedGoals}
+              {stats.shorthandedPoints - stats.shorthandedGoals}
             </TableCell>
             <TableCell align="left">
               {(
-                (stats.shortHandedPoints - stats.shortHandedGoals) /
-                stats.games
+                (stats.shorthandedPoints - stats.shorthandedGoals) /
+                stats.gamesPlayed
               ).toFixed(2)}
             </TableCell>
           </TableRow>

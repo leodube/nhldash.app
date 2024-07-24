@@ -14,11 +14,12 @@ import TableRow from "@mui/material/TableRow";
 const PlayerStatsGoalie = (props) => {
   // Destructure props
   const { stats } = props;
+  console.log(stats);
 
   return (
     <Box sx={{ pt: 2, pb: 2 }}>
       <Stack direction="row" spacing={1}>
-        <Chip label={`Games Played: ${stats.games}`} />
+        <Chip label={`Games Played: ${stats.gamesPlayed}`} />
         <Chip label={`Games Started: ${stats.gamesStarted}`} />
       </Stack>
       <Typography sx={{ pt: 1 }} variant="h6" component="div">
@@ -46,12 +47,6 @@ const PlayerStatsGoalie = (props) => {
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
-              Saves
-            </TableCell>
-            <TableCell align="left">{stats.saves}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
               Goals Against
             </TableCell>
             <TableCell align="left">{stats.goalsAgainst}</TableCell>
@@ -60,16 +55,14 @@ const PlayerStatsGoalie = (props) => {
             <TableCell component="th" scope="row">
               Save Percentage
             </TableCell>
-            <TableCell align="left">
-              {(stats.savePercentage * 100).toFixed(2)}%
-            </TableCell>
+            <TableCell align="left">{stats.savePctg.toFixed(3)}%</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
               Goals Against Average
             </TableCell>
             <TableCell align="left">
-              {stats.goalAgainstAverage.toFixed(2)}
+              {stats.goalsAgainstAvg.toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -77,105 +70,6 @@ const PlayerStatsGoalie = (props) => {
               Shutouts
             </TableCell>
             <TableCell align="left">{stats.shutouts}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-      <Typography sx={{ pt: 2 }} variant="h6" component="div">
-        Even Strength (5v5)
-      </Typography>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ width: 400 }}>Stat</TableCell>
-            <TableCell align="left">Total</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Shots
-            </TableCell>
-            <TableCell align="left">{stats.evenShots}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Saves
-            </TableCell>
-            <TableCell align="left">{stats.evenSaves}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Save Percentage
-            </TableCell>
-            <TableCell align="left">
-              {stats.evenStrengthSavePercentage.toFixed(2)}%
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-      <Typography sx={{ pt: 2 }} variant="h6" component="div">
-        Short Handed (4v5)
-      </Typography>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ width: 400 }}>Stat</TableCell>
-            <TableCell align="left">Total</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Shots
-            </TableCell>
-            <TableCell align="left">{stats.powerPlayShots}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Saves
-            </TableCell>
-            <TableCell align="left">{stats.powerPlaySaves}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Save Percentage
-            </TableCell>
-            <TableCell align="left">
-              {stats.powerPlaySavePercentage.toFixed(2)}%
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-      <Typography sx={{ pt: 2 }} variant="h6" component="div">
-        Power Play (5v4)
-      </Typography>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ width: 400 }}>Stat</TableCell>
-            <TableCell align="left">Total</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Shots
-            </TableCell>
-            <TableCell align="left">{stats.shortHandedShots}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Saves
-            </TableCell>
-            <TableCell align="left">{stats.shortHandedSaves}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Save Percentage
-            </TableCell>
-            <TableCell align="left">
-              {stats.shortHandedSavePercentage.toFixed(2)}%
-            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

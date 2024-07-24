@@ -30,14 +30,14 @@ const PlayerCard = (props) => {
 
   // Renderers
   const renderTab = () => {
+    console.log(player)
     switch (tab) {
       case 0:
         return <PlayerInfo info={player.info} />;
       case 1:
-        if (player.info.primaryPosition.type === "Goalie")
-          return <PlayerStatsGoalie stats={player.stats[0].splits[0].stat} />;
-        else
-          return <PlayerStatsSkater stats={player.stats[0].splits[0].stat} />;
+        if (player.info.position == "G")
+          return <PlayerStatsGoalie stats={player.stats} />;
+        else return <PlayerStatsSkater stats={player.stats} />;
       default:
         return <PlayerInfo info={player.info} />;
     }
@@ -48,11 +48,13 @@ const PlayerCard = (props) => {
       <DialogTitle>
         <Stack direction="row" spacing={2}>
           <Avatar
-            alt={player.info.fullName}
-            src={`https://cms.nhl.bamgrid.com/images/headshots/current/60x60/${player.info.id}.jpg`}
+            alt={
+              player.info.firstName.default + " " + player.info.lastName.default
+            }
+            src={player.info.headshot}
           />
           <Typography variant="h6" component="div">
-            {player.info.fullName}
+            {player.info.firstName.default + " " + player.info.lastName.default}
           </Typography>
         </Stack>
       </DialogTitle>

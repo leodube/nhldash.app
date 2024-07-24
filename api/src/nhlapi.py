@@ -1,11 +1,12 @@
 import requests
 from flask import abort
 
-nhl_url = 'https://statsapi.web.nhl.com/api/v1/'
+WEB_API_BASE = 'https://api-web.nhle.com'
+STATS_API_BASE = 'https://api.nhle.com/stats/rest'
 
 
-def nhl_request(path, **kwargs):
-    res = requests.get(nhl_url+path, **kwargs)
+def web_api_request(path, **kwargs):
+    res = requests.get(WEB_API_BASE+path, **kwargs)
     if res.status_code == 200:
         return res.json()
     try:
@@ -13,43 +14,26 @@ def nhl_request(path, **kwargs):
     except:
         abort(res.status_code, 'NHL API Error')
 
+def stats_api_request(path, **kwargs):
+    res = requests.get(STATS_API_BASE+path, **kwargs)
+    if res.status_code == 200:
+        return res.json()
+    try:
+        abort(res.status_code, res.json()['message'])
+    except:
+        abort(res.status_code, 'NHL API Error')
 
 def get_player(player_id, params={}):
-    response = nhl_request(f'people/{player_id}', params=params)
-    return response['people'][0]
-
-
-def get_player_stats(player_id, params={}):
-    response = nhl_request(f'people/{player_id}/stats', params=params)
-    return response['stats']
-
-
-def get_teams(params={}):
-    response = nhl_request('teams', params=params)
-    return response['teams']
-
-
-def get_team(team_id, params={}):
-    response = nhl_request(f'teams/{team_id}', params=params)
-    return response['teams'][0]
-
-
-def get_team_stats(team_id, params={}):
-    response = nhl_request(f'teams/{team_id}/stats', params=params)
-    return response['stats']
-
-
-def get_team_roster(team_id, params={}):
-    response = nhl_request(
-        f'teams/{team_id}?expand=team.roster', params=params)
-    return response['teams'][0]['roster']['roster']
-
-
-def get_schedule(params={}):
-    response = nhl_request('schedule', params=params)
+    response = web_api_request(f'/v1/player/{player_id}/landing', params=params)
     return response
 
 
-def get_game(game_pk, params={}):
-    response = nhl_request(f'game/{game_pk}/feed/live', params=params)
-    return response['gameData']
+def get_teams(params={}):
+    response = web_api_request('/v1/standings/now', params=params)
+    return response['standings']
+
+
+def get_team_roster(team_abbr, params={}):
+    response = web_api_request(
+        f'/v1/roster/{team_abbr}/current', params=params)
+    return response

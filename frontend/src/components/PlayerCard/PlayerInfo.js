@@ -16,12 +16,9 @@ const PlayerInfo = (props) => {
   return (
     <Box sx={{ pt: 2, pb: 2 }}>
       <Stack direction="row" spacing={1}>
-        {info.alternateCaptain && <Chip label="Alternate Captain" />}
-        {info.captain && <Chip label="Captain" />}
-        {info.rookie && <Chip label={`Age: ${info.currentAge}`} />}
-        <Chip label={`Age: ${info.currentAge}`} />
-        <Chip label={`Height: ${info.height}`} />
-        <Chip label={`Weight: ${info.weight}`} />
+        <Chip label={`Id: ${info.playerId}`} />
+        <Chip label={`Height: ${info.heightInCentimeters}cm`} />
+        <Chip label={`Weight: ${info.weightInKilograms}kg`} />
         <Chip label={`Shoots: ${info.shootsCatches}`} />
       </Stack>
       <Table>
@@ -30,13 +27,19 @@ const PlayerInfo = (props) => {
             <TableCell sx={{ width: 180 }} component="th" scope="row">
               Sweater Number
             </TableCell>
-            <TableCell align="left">{info.primaryNumber}</TableCell>
+            <TableCell align="left">{info.sweaterNumber}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
               Position
             </TableCell>
-            <TableCell align="left">{info.primaryPosition.name}</TableCell>
+            <TableCell align="left">
+              {info.position == "L"
+                ? "LW"
+                : info.position == "R"
+                ? "RW"
+                : info.position}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
@@ -48,25 +51,21 @@ const PlayerInfo = (props) => {
             <TableCell component="th" scope="row">
               Birth State/Province
             </TableCell>
-            <TableCell align="left">{info.birthStateProvince}</TableCell>
+            <TableCell align="left">
+              {info.birthStateProvince && info.birthStateProvince.default}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
               Birth City
             </TableCell>
-            <TableCell align="left">{info.birthCity}</TableCell>
+            <TableCell align="left">{info.birthCity.default}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
               Birth Date
             </TableCell>
             <TableCell align="left">{info.birthDate}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Nationality
-            </TableCell>
-            <TableCell align="left">{info.nationality}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

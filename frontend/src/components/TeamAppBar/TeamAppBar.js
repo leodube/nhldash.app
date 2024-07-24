@@ -29,7 +29,7 @@ const TeamAppBar = (props) => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          {team && team.name}
+          {team && team.teamName.default}
         </Typography>
       </Toolbar>
     </AppBar>

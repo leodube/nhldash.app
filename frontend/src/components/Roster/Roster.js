@@ -15,7 +15,7 @@ const Roster = (props) => {
 
   useEffect(() => {
     const getRoster = async () => {
-      let res = await teamService.getRoster(team.id);
+      let res = await teamService.getRoster(team.teamAbbrev.default);
       setRoster(res);
     };
 
@@ -33,7 +33,7 @@ const Roster = (props) => {
         <Divider />
         <PlayerList
           roster={roster}
-          type="Forward"
+          type="forwards"
           openPlayerModal={openPlayerModal}
         />
       </Grid>
@@ -44,7 +44,7 @@ const Roster = (props) => {
         <Divider />
         <PlayerList
           roster={roster}
-          type="Defenseman"
+          type="defensemen"
           openPlayerModal={openPlayerModal}
         />
         <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
@@ -53,7 +53,7 @@ const Roster = (props) => {
         <Divider />
         <PlayerList
           roster={roster}
-          type="Goalie"
+          type="goalies"
           openPlayerModal={openPlayerModal}
         />
       </Grid>

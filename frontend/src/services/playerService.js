@@ -8,8 +8,14 @@ const playerService = {
     return res.data || [];
   },
   getPlayerStats: async (player_id) => {
-    let res = await axios.get(url + `/players/${player_id}/stats`);
-    return res.data || [];
+    let res = await axios.get(url + `/players/${player_id}`);
+
+    if (!res.data) { return [] }
+
+    return res.data.seasonTotals.filter((seasonTotal) => {
+      return seasonTotal.gameTypeId == 2 && seasonTotal.leagueAbbrev == 'NHL'
+    }
+    ).at(-1);
   },
 };
 

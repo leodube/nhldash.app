@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { playerService } from "../services";
 import { TeamAppBar, TeamsList, Roster, PlayerCard } from "../components";
 import { useTeams, usePlayer } from "../hooks";
 
